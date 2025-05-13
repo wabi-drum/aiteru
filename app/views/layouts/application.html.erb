@@ -24,6 +24,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
               <li>
                 <%= link_to root_path, class: "nav-link text-light" do %>
                 <i class="fa-solid fa-magnifying-glass"></i> Search
@@ -45,10 +46,16 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to root_path, class: "nav-link text-light" do %>
+                <%= link_to about_path, class: "nav-link text-light" do %>
+                <i class="fa-regular fa-circle-question"></i> About
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, class: "nav-link text-light" do %>
                 <i class="fa-solid fa-right-from-bracket"></i> Log Out
                 <% end %>
               </li>
+            <% else %>
               <li>
                 <%= link_to about_path, class: "nav-link text-light" do %>
                 <i class="fa-regular fa-circle-question"></i> About
@@ -64,6 +71,7 @@
                 <i class="fa-solid fa-right-to-bracket"></i> Log In
                 <% end %>
               </li>
+            <% end %>
             </ul>
           </div>
         </div>
