@@ -67,7 +67,7 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to root_path, class: "nav-link text-light" do %>
+                <%= link_to new_user_session_path, class: "nav-link text-light" do %>
                 <i class="fa-solid fa-right-to-bracket"></i> Log In
                 <% end %>
               </li>
@@ -77,6 +77,8 @@
         </div>
       </nav>
     </header>
+    <%= flash[:notice] %>
+    <%= flash[:alert] %>
     <%= yield %>
   </body>
 </html>
