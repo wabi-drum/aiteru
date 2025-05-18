@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="col-md-8">
+    <h3>投稿フォーム</h3>
+    <%= form_with model: @post do |f| %>
+      <%= f.text_field :title, placeholder: "タイトル" %>
+      <br>
+      <%= f.text_area :body, placeholder: "本文" %>
+      <br>
+      <%= f.file_field :image, accept: "image/*" %>
+    <% end %>
+  </div>
+</div>
