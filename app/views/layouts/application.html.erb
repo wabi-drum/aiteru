@@ -30,15 +30,32 @@
                 <i class="fa-solid fa-magnifying-glass"></i> Search
                 <% end %>
               </li>
-              <li>
-                <%= link_to root_path, class: "nav-link text-light" do %>
-                <i class="fa-regular fa-calendar-plus"></i> Plans
-                <% end %>
-              </li>
-              <li>
-                <%= link_to root_path, class: "nav-link text-light" do %>
-                <i class="fa-regular fa-newspaper"></i> Posts
-                <% end %>
+              <li class="nav-item dropdown">
+                <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa-regular fa-calendar-plus"></i> Plans
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <%= link_to root_path, class: "dropdown-item" do %>
+                    Make a plan
+                  <% end %>    
+                  <div class="dropdown-divider"></div>
+                  <%= link_to about_path, class: "dropdown-item" do %>
+                    Timeline
+                  <% end %>
+                </div>
+              <li class="nav-item dropdown">
+                <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa-regular fa-newspaper"></i> Posts
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <%= link_to root_path, class: "dropdown-item" do %>
+                    Post
+                  <% end %>    
+                  <div class="dropdown-divider"></div>
+                  <%= link_to about_path, class: "dropdown-item" do %>
+                    Feed
+                  <% end %>
+                </div>
               </li>
               <li>
                 <%= link_to root_path, class: "nav-link text-light" do %>
