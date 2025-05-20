@@ -1,6 +1,6 @@
 <% @posts.each do |post| %>
   <div>
-    <%= image_tag post.get_image %>
+    <%= image_tag post.get_image(300, 200) %>
     <p>タイトル：<%= post.title %></p>
     <p>本文：<%= post.body %></p>
     <p>ユーザーネーム：<%= post.user.name %></p>
