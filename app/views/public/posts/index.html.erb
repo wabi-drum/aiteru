@@ -1,8 +1,10 @@
 <% @posts.each do |post| %>
   <div>
-    <%= image_tag post.get_image(300, 200) %>
-    <p>タイトル：<%= post.title %></p>
-    <p>本文：<%= post.body %></p>
-    <p>ユーザーネーム：<%= post.user.name %></p>
+    <%= link_to post_path(post.id) do %>
+      <%= image_tag post.get_image(300, 200) %>
+      <p>タイトル：<%= post.title %></p>
+      <p>本文：<%= post.body %></p>
+      <p>ユーザーネーム：<%= post.user.name %></p>
+    <% end %>
   </div>
 <% end %>

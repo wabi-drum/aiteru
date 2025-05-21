@@ -1,5 +1,8 @@
 <div>
-  <%= image_tag @post.get_image %>
+  <%= image_tag @post.get_image(500, 500) %>
   <p>＜タイトル＞<%= @post.title %>
   <p>＜本文＞<%= @post.body %>
+  <p>＜ユーザーネーム＞<%= @post.user.name %>
+  <%= link_to "編集", edit_post_path(@post.id) %>
+
 </div>
