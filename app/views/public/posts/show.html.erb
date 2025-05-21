@@ -3,8 +3,11 @@
   <p>＜タイトル＞<%= @post.title %>
   <p>＜本文＞<%= @post.body %>
   <p>＜ユーザーネーム＞<%= @post.user.name %>
-  <br>
-  <%= link_to "編集", edit_post_path(@post.id) %>
-  <br>
-  <%= link_to "削除", post_path(@post.id), method: :delete %>
+  
+  <% if @post.user == current_user %>
+    <br>
+    <%= link_to "編集", edit_post_path(@post.id) %>
+    <br>
+    <%= link_to "削除", post_path(@post.id), method: :delete %>
+  <% end %>
 </div>
