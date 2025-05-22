@@ -1,4 +1,7 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :correct_user, only: [:edit, :update, :destroy]
+
   def index
     @posts = Post.all
   end
@@ -22,11 +25,9 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
     if @post.update(post_params)
       flash[:notice] = "Nice work! Your post has been successfully updated."
       redirect_to post_path(@post.id)
@@ -36,7 +37,6 @@ class Public::PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
   end
@@ -47,4 +47,8 @@ class Public::PostsController < ApplicationController
     params.require(:post).permit(:title, :body, :image)
   end
 
+  def correct_user
+    @post = current_user.posts.find_by(id: params[:id])
+    redirect_to root_path unless @post
+  end
 end

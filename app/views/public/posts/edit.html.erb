@@ -1,4 +1,12 @@
 <h1>へんしゅうがめん</h1>
+<% if @post.errors.any? %>
+  <h4>Oops! Looks like something went wrong.</h4>
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <%= form_with model: @post do |post| %>
   <label for="post_title">たいとる</label>
   <%= post.text_field :title %>
