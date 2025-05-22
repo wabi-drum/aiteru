@@ -27,9 +27,8 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.user_id = current_user.id
     if @post.update(post_params)
-      flash[:notice] = ""
+      flash[:notice] = "Nice work! Your post has been successfully updated."
       redirect_to post_path(@post.id)
     else
       render :edit

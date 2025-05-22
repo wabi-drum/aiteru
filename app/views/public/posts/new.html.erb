@@ -2,7 +2,7 @@
   <div class="col-md-8">
     <h3>投稿フォーム</h3>
     <% if @post.errors.any? %>
-      <h4>Error</h4>
+      <h4>Oops! Looks like something went wrong.</h4>
       <ul>
         <% @post.errors.full_messages.each do |message| %>
           <li><%= message %></li>
