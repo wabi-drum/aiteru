@@ -1,3 +1,16 @@
 <div>
+  <p>~Profile Image~</p>
   <%= image_tag @user.get_profile_image(300, 300) %>
-</div
+  <p>~Name~</p>
+  <h4><%= @user.name %></h4>
+  <%= link_to "Edit My Profile", edit_user_path(@user.id) %>
+</div>
+<% @user.posts.each do |post| %>
+  <div>
+    <%= link_to post_path(post.id) do %>
+      <%= image_tag post.get_image(300, 300) %>
+    <% end %>
+    <h5><%= post.title %></h5>
+    <p><%= post.body %></p>
+    <% end %>
+  </div>
