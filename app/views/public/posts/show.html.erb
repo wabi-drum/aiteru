@@ -1,13 +1,21 @@
-<div>
-  <%= image_tag @post.get_image(500, 500) %>
-  <p>＜タイトル＞<%= @post.title %>
-  <p>＜本文＞<%= @post.body %>
-  <p>＜ユーザーネーム＞<%= @post.user.name %>
-  
-  <% if @post.user == current_user %>
-    <br>
-    <%= link_to "編集", edit_post_path(@post.id) %>
-    <br>
-    <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "Are you sure you want to delete this post?" %>
-  <% end %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+        <%= image_tag @post.get_image(800, 800), class: "img-fluid w-100 object-fit-cover", style: "max-height: 600px;" %>
+        <div class="card-body text-center">
+          <h4 class="card-title mb-3">＜タイトル＞<%= @post.title %></h4>
+          <p class="card-text">＜本文＞<%= simple_format(@post.body) %></p>
+          <p class="text-muted">＜ユーザーネーム＞<%= @post.user.name %></p>
+
+          <% if @post.user == current_user %>
+            <div class="d-flex justify-content-center gap-3 mt-4">
+              <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-outline-primary" %>
+              <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "Are you sure you want to delete this post?", class: "btn btn-outline-danger" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
