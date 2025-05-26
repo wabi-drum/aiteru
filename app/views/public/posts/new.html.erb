@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="col-md-8 mx-auto">
     <div class="card shadow rounded-4 p-4">
-      <h3 class="mb-4 text-center">📷 投稿フォーム</h3>
+      <h3 class="mb-4 text-center">📷 Create a Post</h3>
 
       <% if @post.errors.any? %>
         <div class="alert alert-danger">
@@ -22,7 +22,7 @@
 
         <div class="mb-3">
           <%= f.label :body, "Content", class: "form-label" %>
-          <%= f.text_area :body, class: "form-control", placeholder: "Enter the main content here", rows: 5 %>
+          <%= f.text_area :body, class: "form-control", placeholder: "Enter the main content here.", rows: 5 %>
         </div>
 
         <div class="mb-4">
