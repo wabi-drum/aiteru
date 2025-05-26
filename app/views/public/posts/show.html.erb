@@ -2,16 +2,30 @@
   <div class="row w-100">
     <div class="col-md-8 mx-auto">
       <div class="card border-0 shadow-lg rounded-4 overflow-hidden mb-5">
+        
         <%= image_tag @post.get_image(800, 800), class: "img-fluid w-100 object-fit-cover", style: "max-height: 600px;" %>
-        <div class="card-body text-center">
-          <h4 class="card-title mb-3">＜タイトル＞<%= @post.title %></h4>
-          <p class="card-text">＜本文＞<%= simple_format(@post.body) %></p>
-          <p class="text-muted">＜ユーザーネーム＞<%= @post.user.name %></p>
+
+        
+        <div class="card-body">
           
+          <div class="d-flex align-items-center mb-3">
+              <%= image_tag @post.user.get_profile_image(50, 50), 
+              class: "rounded-circle", 
+              style: "width: 40px; height: 40px; object-fit: cover;" %>
+        
+            <span class="ms-2 text-muted fw-semibold">投稿者：<%= @post.user.name %></span>
+          </div>
+
+        
+          <h3 class="fw-bold mb-3 border-bottom pb-2"><%= @post.title %></h3>
+
+          
+          <p class="fs-5" style="line-height: 1.8;"><%= simple_format(@post.body) %></p>
+
           <% if @post.user == current_user %>
-            <div class="d-flex justify-content-center gap-3 mt-4">
-              <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-outline-primary" %>
-              <%= link_to "削除", post_path(@post.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger" %>
+            <div class="d-flex justify-content-end gap-3 mt-4">
+              <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-outline-primary px-4" %>
+              <%= link_to "削除", post_path(@post.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger px-4" %>
             </div>
           <% end %>
         </div>
