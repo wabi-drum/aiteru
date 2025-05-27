@@ -1,11 +1,34 @@
-<div>
-  <h2>Edit My Profile</h2>
-  <%= form_with model: @user do |user| %>
-    <%= user.file_field :profile_image, placeholder: "Profile Image", accept: "image/*" %>
-    <h6><%= user.label :name %></h6>
-    <%= user.text_field :name, autofocus: true, placeholder:"Name" %>
-    <h6><%= user.label :email %></h6>
-    <%= user.text_field :email, autofocus: true, placeholder:"E-mail" %>
-    <%= user.submit "Save Changes" %>
-  <% end %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card border-0 shadow rounded-4 p-4">
+        <h3 class="text-center mb-4">Edit My Profile</h3>
+
+        <%= form_with model: @user, local: true, html: { multipart: true } do |user| %>
+          <div class="mb-4 text-center">
+            <%= image_tag @user.get_profile_image(120, 120), class: "rounded-circle img-fluid shadow-sm", style: "object-fit: cover;" %>
+          </div>
+
+          <div class="mb-3">
+            <%= user.label :profile_image, "Upload New Profile Image", class: "form-label" %>
+            <%= user.file_field :profile_image, class: "form-control", accept: "image/*" %>
+          </div>
+
+          <div class="mb-3">
+            <%= user.label :name, class: "form-label" %>
+            <%= user.text_field :name, class: "form-control", placeholder: "Name", autofocus: true %>
+          </div>
+
+          <div class="mb-4">
+            <%= user.label :email, class: "form-label" %>
+            <%= user.email_field :email, class: "form-control", placeholder: "E-mail" %>
+          </div>
+
+          <div class="d-grid">
+            <%= user.submit "Save Changes", class: "btn btn-primary btn-lg rounded-pill" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

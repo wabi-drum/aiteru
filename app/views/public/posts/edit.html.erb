@@ -1,16 +1,36 @@
-<h1>へんしゅうがめん</h1>
-<% if @post.errors.any? %>
-  <h4>Oops! Looks like something went wrong.</h4>
-  <ul>
-    <% @post.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-<%= form_with model: @post do |post| %>
-  <label for="post_title">たいとる</label>
-  <%= post.text_field :title %>
-  <label for="post_body">ほんぶん</label>
-  <%= post.text_area :body %>
-  <%= post.submit "こーしん" %>
-<% end %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card border-0 shadow rounded-4 p-4">
+        <h3 class="text-center mb-4">Edit Post</h3>
+
+        <% if @post.errors.any? %>
+          <div class="alert alert-danger">
+            <h5 class="mb-3">Oops! Looks like something went wrong.</h5>
+            <ul class="mb-0">
+              <% @post.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <%= form_with model: @post, local: true, html: { multipart: true } do |post| %>
+          <div class="mb-3">
+            <%= post.label :title, "Title", class: "form-label" %>
+            <%= post.text_field :title, class: "form-control", placeholder: "Enter the title" %>
+          </div>
+
+          <div class="mb-4">
+            <%= post.label :body, "Main Content", class: "form-label" %>
+            <%= post.text_area :body, class: "form-control", rows: 6, placeholder: "Write your thoughts..." %>
+          </div>
+
+          <div class="d-grid">
+            <%= post.submit "Update Post", class: "btn btn-primary btn-lg rounded-pill" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
