@@ -1,9 +1,9 @@
 <div class="container min-vh-100 d-flex justify-content-center align-items-center">
   <div class="row w-100">
     <div class="col-md-8 mx-auto">
-      <div class="card border-0 shadow-lg rounded-4 overflow-hidden mb-5">
+      <div class="card border-0 shadow-lg rounded-4 overflow-hidden m-5">
         
-        <%= image_tag @post.get_image(800, 800), class: "img-fluid w-100 object-fit-cover", style: "max-height: 600px;" %>
+        <%= image_tag @post.get_image(600, 600), class: "img-fluid w-100 object-fit-cover" %>
 
         
         <div class="card-body">
@@ -11,9 +11,9 @@
           <div class="d-flex align-items-center mb-3">
               <%= image_tag @post.user.get_profile_image(50, 50), 
               class: "rounded-circle", 
-              style: "width: 40px; height: 40px; object-fit: cover;" %>
+              style: "object-fit: cover;" %>
         
-            <span class="ms-2 text-muted fw-semibold">投稿者：<%= @post.user.name %></span>
+              <span class="ms-8 text-muted fw-semibold fs-6"><%= @post.user.name %></span>
           </div>
 
         
