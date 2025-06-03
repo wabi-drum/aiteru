@@ -3,16 +3,7 @@
     <div class="card shadow rounded-4 p-4">
       <h3 class="mb-4 text-center">📷 Create a Post</h3>
 
-      <% if @post.errors.any? %>
-        <div class="alert alert-danger">
-          <h5 class="alert-heading">Oops! Looks like something went wrong.</h5>
-          <ul class="mb-0">
-            <% @post.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+      <%= render "layouts/error_messages", model: @post %>
 
       <%= form_with model: @post, local: true do |f| %>
         <div class="mb-3">

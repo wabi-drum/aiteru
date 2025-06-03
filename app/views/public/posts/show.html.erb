@@ -13,7 +13,7 @@
               class: "rounded-circle", 
               style: "object-fit: cover;" %>
         
-              <span class="text-muted fw-semibold fs-6"><%= @post.user.name %></span>
+              <span class="text-muted fw-semibold fs-6"><%= link_to @post.user.name, @post.user %></span>
           </div>
 
         

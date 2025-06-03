@@ -5,6 +5,8 @@
         <h3 class="text-center mb-4">Edit My Profile</h3>
 
         <%= form_with model: @user, local: true, html: { multipart: true } do |user| %>
+          <%= render "layouts/error_messages", model: @user %>
+          
           <div class="mb-4 text-center">
             <%= image_tag @user.get_profile_image(120, 120), class: "rounded-circle img-fluid shadow-sm", style: "object-fit: cover;" %>
           </div>
