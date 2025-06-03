@@ -2,12 +2,12 @@
   <div class="row g-4 justify-content-center">
     <% @posts.each do |post| %>
       <div class="col-12 col-md-6 mb-4">
-        <div class="card border-0 shadow rounded-4 overflow-hidden">
+        <div class="card border-0 shadow rounded-4 overflow-hidden h-100">
           <%= link_to post_path(post.id), class: "text-decoration-none text-dark" do %>
             <%= image_tag post.get_image(500, 500), class: "card-img-top object-fit-cover", alt: "投稿画像" %>
             <div class="card-body">
               <h5 class="card-title"><%= post.title %></h5>
-              <p class="card-text text-muted"><%= post.body %></p>
+              <p class="card-text text-muted"><%= truncate(post.body, length: 100) %></p>
               <p class="card-text text-end text-primary mb-0">by <%= post.user.name %></p>
             </div>
           <% end %>
