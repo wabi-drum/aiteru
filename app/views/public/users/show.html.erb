@@ -23,7 +23,10 @@
             <div class="card-body">
               <h5 class="card-title"><%= post.title %></h5>
               <p class="card-text text-muted"><%= truncate(post.body, length: 100) %></p>
-              <p class="card-text text-end text-primary mb-0">by <%= @user.name %></p>
+              <p class="card-text text-end mb-0 d-flex justify-content-end align-items-center gap-2">
+                <%= image_tag post.user.get_profile_image(30, 30), class: "rounded-circle", style: "object-fit: cover;" %>
+                <span class="text-primary"><%= post.user.name %></span>
+              </p>
             </div>
           <% end %>
         </div>
