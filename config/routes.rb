@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'post_comments/create'
-    get 'post_comments/destroy'
-  end
   devise_for :users
   scope module: :public do
     root to: 'homes#top'
     get 'about', to: 'homes#about'
+    get '/search', to: 'searches#search', as: 'search'
     resources :users, only: [:show, :edit, :update, :destroy]
     resources :posts do
       resources :post_comments, only: [:create, :destroy]

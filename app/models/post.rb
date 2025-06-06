@@ -17,4 +17,8 @@ class Post < ApplicationRecord
     image.variant(gravity: :center, resize: "#{width}x#{height}^", crop: "#{width}x#{height}+0+0")
   end
   
+  def self.search_for(content)
+    Post.where("title LIKE ?", "%#{content}%")
+  end 
+
 end

@@ -25,10 +25,10 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
-              <li>
-                <%= link_to root_path, class: "nav-link text-light" do %>
+              <li class="nav-item">
+                <a class="nav-link text-light" data-toggle="collapse" href="#searchForm" role="button" aria-expanded="false" aria-controls="searchForm">
                   <i class="fa-solid fa-magnifying-glass"></i> Search
-                <% end %>
+                </a>
               </li>
               <li>
                 <%= link_to user_path(current_user.id), class: "nav-link text-light" do %>
@@ -98,6 +98,24 @@
           </div>
         </div>
       </nav>
+      <div class="collapse bg-light border-top py-3" id="searchForm">
+        <div class="container">
+          <%= form_with url: search_path, method: :get, local: true do %>
+            <div class="form-row">
+              <div class="col-md-3 mb-2">
+                <%= select_tag :model, options_for_select([['User', 'user'], ['Post', 'post']]), class: "form-control" %>
+              </div>
+              <div class="col-md-7 mb-2">
+                <%= text_field_tag :content, params[:content], placeholder: "けんさく！", class: "form-control" %>
+              </div>
+              <div class="col-md-2 mb-2">
+                <%= submit_tag "Search", class: "btn btn-primary btn-block" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
     </header>
     <%= flash[:notice] %>
     <%= flash[:alert] %>

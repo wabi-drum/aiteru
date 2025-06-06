@@ -45,7 +45,9 @@
                 </div>
                 <p class="mb-0 mt-1"><%= simple_format(post_comment.comment) %></p>
                 <% if post_comment.user == current_user %>
-                  <p>yay</p>
+                  <div class="d-flex justify-content-end">
+                    <%= link_to 'Delete', post_post_comment_path(post_comment.post, post_comment), method: :delete, data: { confirm: "Are you sure you want to delete this comment?" }, class: "btn btn-outline-danger px-4" %>
+                  </div>
                 <% end %>
               </div>
             </div>
@@ -56,6 +58,7 @@
       <div class="card mt-4 shadow-sm rounded-3">
         <div class="card-body">
           <h6 class="fw-bold mb-3">Leave a Comment</h6>
+          <%= render "layouts/error_messages", model: @post_comment %>
           <%= form_with model: [@post, @post_comment], local: true do |f| %>
             <div class="mb-3">
               <%= f.text_area :comment, rows: 4, class: "form-control", placeholder: "Type your comment here…" %>

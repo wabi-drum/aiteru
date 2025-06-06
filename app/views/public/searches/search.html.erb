@@ -1,0 +1,13 @@
+<h2 class="mt-4">検索結果</h2>
+
+<% if @records.any? %>
+  <% @records.each do |record| %>
+    <% if @model == 'user' %>
+      <p><%= link_to record.name, user_path(record) %></p>
+    <% else %>
+      <p><%= link_to record.title, post_path(record) %></p>
+    <% end %>
+  <% end %>
+<% else %>
+  <p>一致する結果は見つかりませんでした。</p>
+<% end %>

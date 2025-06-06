@@ -19,4 +19,8 @@ class User < ApplicationRecord
     profile_image.variant(gravity: :center, resize: "#{width}x#{height}^", crop: "#{width}x#{height}+0+0")
   end
 
+  def self.search_for(content)
+    User.where("name LIKE ?", "%#{content}%")
+  end
+
 end
