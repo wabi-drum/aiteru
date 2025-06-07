@@ -1,13 +1,28 @@
-<h2 class="mt-4">検索結果</h2>
-
 <% if @records.any? %>
-  <% @records.each do |record| %>
-    <% if @model == 'user' %>
-      <p><%= link_to record.name, user_path(record) %></p>
-    <% else %>
-      <p><%= link_to record.title, post_path(record) %></p>
+  <div class="row">
+    <% @records.each do |record| %>
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100">
+          <% if @model == 'user' %>
+            <%= link_to user_path(record), class: "text-decoration-none text-dark" do %>
+              <%= image_tag record.get_profile_image(30, 30), class: "card-img-top", alt: "User Image" %>
+              <div class="card-body">
+                <h5 class="card-title"><%= record.name %>
+              </div>
+            <% end %>
+          <% else %>
+            <%= link_to post_path(record), class: "text-decoration-none text-dark" do %>
+              <div class="card-body">
+                <h5 class="card-title"><%= record.title %></h5>
+                <p class="card-text"><%= truncate(record.body, length: 70) %></p>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     <% end %>
-  <% end %>
+  </div>
 <% else %>
-  <p>一致する結果は見つかりませんでした。</p>
+  <p>No results found for "<strong><%= params[:content] %>".</p>
+  <p>Please check the spelling or try different keywords.</p>
 <% end %>

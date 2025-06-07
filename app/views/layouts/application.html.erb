@@ -106,7 +106,7 @@
                 <%= select_tag :model, options_for_select([['User', 'user'], ['Post', 'post']]), class: "form-control" %>
               </div>
               <div class="col-md-7 mb-2">
-                <%= text_field_tag :content, params[:content], placeholder: "けんさく！", class: "form-control" %>
+                <%= text_field_tag :content, params[:content], placeholder: "Enter a name, title, or keyword…", class: "form-control" %>
               </div>
               <div class="col-md-2 mb-2">
                 <%= submit_tag "Search", class: "btn btn-primary btn-block" %>
