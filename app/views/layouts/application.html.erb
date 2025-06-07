@@ -117,8 +117,16 @@
       </div>
 
     </header>
-    <%= flash[:notice] %>
-    <%= flash[:alert] %>
+    <% if flash[:notice] %>
+      <div class="alert alert-success mt-3 shadow" role="alert">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="alert alert-danger mt-3 shadow" role="alert">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
