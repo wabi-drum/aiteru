@@ -5,7 +5,7 @@
         <div class="card h-100">
           <% if @model == 'user' %>
             <%= link_to user_path(record), class: "text-decoration-none text-dark" do %>
-              <%= image_tag record.get_profile_image(30, 30), class: "card-img-top", alt: "User Image" %>
+              <%= image_tag record.get_profile_image(500, 500), class: "card-img-top", alt: "User Image" %>
               <div class="card-body">
                 <h5 class="card-title"><%= record.name %>
               </div>
