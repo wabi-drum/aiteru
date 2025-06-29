@@ -17,7 +17,10 @@
 * バンドメンバーで新たにライブやレコーディングや練習の日程を決めるとき。​
 * 複数人が共同で何かしようと予定を企てるとき。
 ## 設計書
-後ほど作成予定です。。。
+- [実装機能リスト](https://docs.google.com/spreadsheets/d/1mosRtPrYvJr1gN5jmS5eA7YQ3OrULGE9S59xNnQ7BzI/edit?gid=1898975908#gid=1898975908)
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1FUZ4dh1mM4g6snXvm9fas_RhQXdhHoy_H9TvP-6fEE4/edit?usp=sharing)
+- [ER図](https://drive.google.com/file/d/1OuNRRxOdDTnXc_L5VVBY4ACEXxu-8GQX/view?usp=sharing)
+- [AWSインフラ設計書](https://docs.google.com/spreadsheets/d/1mejePqyIfZjT2UiOJb8JC53P0L7FYTH-nwKIswAwtMU/edit?usp=sharing)
 ​
 ## 開発環境
 - OS：Linux(CentOS)
