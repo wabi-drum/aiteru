@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users
 
   devise_for :admin, skip: [:registrations, :password], controllers: {
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
     end
+    resources :plans
   end
 
 
