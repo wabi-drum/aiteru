@@ -8,10 +8,11 @@ class Public::PlansController < ApplicationController
   end
 
   def new
-    @post = Post.new 
+    @plan = Plan.new 
   end
 
   def create
+    @plan = Plan.new()
   end
 
   def edit
