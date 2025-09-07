@@ -1,2 +1,8 @@
-<h1>Public::Plans#show</h1>
-<p>Find me in app/views/public/plans/show.html.erb</p>
+<h1><%= @plan.title %></h1>
+
+<p><strong>開始日:</strong> <%= @plan.starting_date %></p>
+<p><strong>終了日:</strong> <%= @plan.ending_date %></p>
+<p><strong>場所:</strong> <%= @plan.place %></p>
+<p><strong>詳細:</strong> <%= @plan.detail %></p>
+
+<%= link_to "一覧に戻る", plans_path %>

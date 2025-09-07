@@ -1,4 +1,6 @@
 class Public::PlansController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @plans = Plan.all 
   end
@@ -12,7 +14,14 @@ class Public::PlansController < ApplicationController
   end
 
   def create
-    @plan = Plan.new()
+    @plan = Plan.new(plan_params)
+    @plan.user_id = current_user.id
+    if @plan.save 
+      flash[:notice] = "Great start! Your plan has been created successfully."
+      redirect_to plan_path(@plan.id)
+    else 
+      render :new
+    end
   end
 
   def edit
@@ -23,4 +32,10 @@ class Public::PlansController < ApplicationController
 
   def destroy
   end
+
+  private
+
+  def plan_params
+    params.require(:plan).permit(:starting_date, :ending_date, :place, :title, :detail)
+  end 
 end
