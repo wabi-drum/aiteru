@@ -24,7 +24,9 @@ Rails.application.routes.draw do
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
     end
-    resources :plans
+    resources :plans do
+      resources :schedules, only: [:create]
+    end 
   end
 
 

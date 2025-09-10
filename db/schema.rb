@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_07_26_101741) do
+ActiveRecord::Schema.define(version: 2025_09_10_122935) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -79,6 +79,17 @@ ActiveRecord::Schema.define(version: 2025_07_26_101741) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "schedules", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "plan_id", null: false
+    t.integer "status", null: false
+    t.datetime "date_time", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plan_id"], name: "index_schedules_on_plan_id"
+    t.index ["user_id"], name: "index_schedules_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -94,4 +105,6 @@ ActiveRecord::Schema.define(version: 2025_07_26_101741) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "schedules", "plans"
+  add_foreign_key "schedules", "users"
 end
