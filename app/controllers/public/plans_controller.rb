@@ -7,6 +7,7 @@ class Public::PlansController < ApplicationController
 
   def show
     @plan = Plan.find(params[:id])
+    @dates = 
   end
 
   def new
