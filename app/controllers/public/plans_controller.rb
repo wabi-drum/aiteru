@@ -7,7 +7,8 @@ class Public::PlansController < ApplicationController
 
   def show
     @plan = Plan.find(params[:id])
-    @dates = 
+    @schedules = @plan.schedules.includes(:user)
+    @dates = (@plan.starting_date..@plan.ending_date).to_a
   end
 
   def new

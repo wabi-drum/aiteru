@@ -8,6 +8,65 @@
       <p><strong>Location:</strong> <%= @plan.place %></p>
       <p><strong>Details:</strong> <%= @plan.detail %></p>
 
+      <h4>Responses</h4>
+      <table class="table table-bordered text-center align-middle table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>User</th>
+            <% @dates.each do |date| %>
+              <th><%= date.strftime("%m/%d") %></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @schedules.group_by(&:user).each do |user, schedules| %>
+            <tr>
+              <td class="text-start">
+                <%= image_tag user.get_profile_image(30, 30), class: "rounded-circle me-2" %>
+                <%= user.name %>
+              </td>
+              <% @dates.each do |date| %>
+                <% schedule = schedules.find { |s| s.date_time.to_date == date} %>
+                <td>
+                  <% if schedule.present? %>
+                    <% case schedule.status
+                       when "available" %> 🙆‍♂️
+                        <% when "unavailable" %> 🙅‍♂️
+                        <% when "maybe" %> 🤔
+                    <% end %>
+                  <% else %>
+
+                  -
+
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <hr>
+
+      <h4>Respond to this Plan</h4>
+
+      <%= form_with model: [@plan, Schedule.new] do |f| %>
+        <div class="mb-3">
+          <%= f.label :date_time, "Date & Time", class: "form-label" %>
+          <%= f.datetime_field :date_time, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :status, "Availability", class: "form-label" %>
+          <%= f.select :status, Schedule.statuses.keys.map { |s| [s.titleize, s] }, {}, class: "form-control" %>
+        </div>
+
+        <%= f.submit "Submit", class: "btn btn-primary w-100" %>
+      <% end %>
+            
+
+
+
       <div class="d-flex justify-content-between mt-4">
         <%= link_to "Back to Plans", plans_path, class: "btn btn-outline-secondary" %>
         <% if @plan.user == current_user %>
