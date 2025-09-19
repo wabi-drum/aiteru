@@ -52,8 +52,8 @@
 
       <%= form_with model: [@plan, Schedule.new] do |f| %>
         <div class="mb-3">
-          <%= f.label :date_time, "Date & Time", class: "form-label" %>
-          <%= f.datetime_field :date_time, class: "form-control" %>
+          <%= f.label :date_time, "Date", class: "form-label" %>
+          <%= f.date_field :date_time, class: "form-control", min: @plan.starting_date, max: @plan.ending_date %>
         </div>
 
         <div class="mb-3">
