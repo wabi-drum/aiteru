@@ -1,3 +1,13 @@
 // Place all the styles related to the public/plans controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.responses-table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.responses-table-wrapper table {
+  min-width: max-content;
+  border-collapse: collapse;
+}
