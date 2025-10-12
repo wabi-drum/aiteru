@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_06_08_071124) do
+ActiveRecord::Schema.define(version: 2025_09_10_122935) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,17 @@ ActiveRecord::Schema.define(version: 2025_06_08_071124) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "plans", force: :cascade do |t|
+    t.integer "user_id"
+    t.date "starting_date"
+    t.date "ending_date"
+    t.string "place"
+    t.string "title"
+    t.text "detail"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "post_comments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
@@ -66,6 +77,17 @@ ActiveRecord::Schema.define(version: 2025_06_08_071124) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "plan_id", null: false
+    t.integer "status", null: false
+    t.datetime "date_time", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plan_id"], name: "index_schedules_on_plan_id"
+    t.index ["user_id"], name: "index_schedules_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -83,4 +105,6 @@ ActiveRecord::Schema.define(version: 2025_06_08_071124) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "schedules", "plans"
+  add_foreign_key "schedules", "users"
 end

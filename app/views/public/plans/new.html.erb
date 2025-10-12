@@ -1,0 +1,43 @@
+<div class="container mt-5">
+  <div class="col-md-8 mx-auto">
+    <div class="card shadow rounded-4 p-4">
+      <h3 class="mb-4 text-center">🗓️ Create a Plan</h3>
+
+      <%= render "layouts/error_messages", model: @plan %>
+
+      <%= form_with model: @plan do |f| %>
+        <div class="mb-3">
+          <%= f.label :title, "Title", class: "form-label" %>
+          <%= f.text_field :title, class: "form-control", placeholder: "What’s this plan about?" %>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <%= f.label :starting_date, "Start Date", class: "form-label" %>
+            <%= f.date_field :starting_date, class: "form-control" %>
+          </div>
+          <div class="col-md-6 mb-3">
+            <%= f.label :ending_date, "End Date", class: "form-label" %>
+            <%= f.date_field :ending_date, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :place, "Location", class: "form-label" %>
+          <%= f.text_field :place, class: "form-control", placeholder: "Where will it be held?" %>
+        </div>
+
+        <div class="mb-4">
+          <%= f.label :detail, "Details", class: "form-label" %>
+          <%= f.text_area :detail, class: "form-control", placeholder: "Describe the purpose, participants, and any notes.", rows: 5 %>
+        </div>
+
+        <%= f.submit "Create", class: "btn btn-primary w-100 py-2" %>
+      <% end %>
+
+      <div class="text-center mt-3">
+        <%= link_to "Back to Plans", plans_path, class: "text-decoration-none" %>
+      </div>
+    </div>
+  </div>
+</div>
