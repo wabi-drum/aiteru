@@ -1,25 +1,18 @@
-<div class="container min-vh-100 d-flex justify-content-center align-items-center">
+<div class="container py-4">
   <div class="row w-100">
     <div class="col-md-8 mx-auto">
-      <div class="card border-0 shadow-lg rounded-4 overflow-hidden m-5">
-        
+      
+      <div class="card border-0 shadow-lg rounded-4 overflow-hidden m-5"> 
         <%= image_tag @post.get_image(600, 600), class: "img-fluid w-100 object-fit-cover" %>
-
-        
         <div class="card-body">
-          
           <div class="d-flex align-items-center mb-3 gap-2">
               <%= image_tag @post.user.get_profile_image(50, 50), 
-              class: "rounded-circle", 
-              style: "object-fit: cover;" %>
-        
+                class: "rounded-circle", 
+                style: "object-fit: cover;" %>
               <span class="text-muted fw-semibold fs-6"><%= link_to @post.user.name, @post.user %></span>
           </div>
 
-        
           <h3 class="fw-bold mb-3 border-bottom pb-2"><%= @post.title %></h3>
-
-          
           <p class="fs-5" style="line-height: 1.8;"><%= simple_format(@post.body) %></p>
 
           <% if @post.user == current_user %>
@@ -31,9 +24,26 @@
         </div>
       </div>
 
-      <div class="mt-4">
-      <h5 class="fw-bold"><i class="fa-regular fa-comment"></i>  <%= @post.post_comments.count %></h5>
+      <div class="d-flex align-items-center gap-3 mt-2 post-actions">
+        <div class="d-inline-flex align-items-center">
+          <% if user_signed_in? && @post.liked_by?(current_user) %>
+            <%= link_to post_like_path(@post), method: :delete, class: "btn-reset action-icon liked" do %>
+              <i class="fa-solid fa-heart"></i>
+            <% end %>
+          <% else %>
+            <%= link_to post_like_path(@post), method: :post, class: "btn-reset action-icon" do %>
+              <i class="fa-regular fa-heart"></i>
+            <% end %>
+          <% end %>
+          <span id="like-count" class="ms-1 small text-muted"><%= @post.likes.count %></span>
+        </div>
 
+        <h5 class="fw-bold mb-0 d-inline-flex align-items-center text dark">
+          <i class="fa-regular fa-comment"></i> <%= @post.post_comments.count %>
+        </h5>
+      </div>
+
+      <div id="comments" class="mt-4"> 
         <% @post.post_comments.each do |post_comment| %>
           <div class="card my-3 shadow-sm rounded-3">
             <div class="card-body d-flex">
@@ -69,6 +79,7 @@
           <% end %>
         </div>
       </div>
+
     </div>
   </div>
 </div>
