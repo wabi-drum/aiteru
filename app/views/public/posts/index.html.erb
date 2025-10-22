@@ -8,11 +8,20 @@
             <div class="card-body">
               <h5 class="card-title"><%= post.title %></h5>
               <p class="card-text text-muted"><%= truncate(post.body, length: 100) %></p>
-              <p><i class="fa-regular fa-comment"></i>  <%= post.post_comments.count %></p>
               <p class="card-text text-end mb-0 d-flex justify-content-end align-items-center gap-2">
                 <%= image_tag post.user.get_profile_image(30, 30), class: "rounded-circle", style: "object-fit: cover;" %>
                 <span class="text-primary"><%= post.user.name %></span>
               </p>
+              <div class="d-flex align-items-center gap-4 mt-3 post-actions">
+                <h5 class="fw-bold mb-0 d-inline-flex align-items-center">
+                  <i class="fa-regular fa-heart action-icon me-2" aria-hidden="true"></i>
+                  <span class="count"><%= post.likes.count %></span>
+                </h5>
+                <h5 class="fw-bold mb-0 d-inline-flex align-items-center">
+                  <i class="fa-regular fa-comment"></i>
+                  <span class="count"><%= post.post_comments.count %></span>
+                </h5>
+              </div>
             </div>
           <% end %>
         </div>
